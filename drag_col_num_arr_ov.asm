@@ -43,7 +43,7 @@ place:
 			inc r3				#at start r3 -> sentinel, so r3 starts with actual first cell 
 			ld r3, r2			#r2 = current card
 			and r0, r2			#r2 = value of current card
-			#if r2 is zero card - we didn't find a card to place to "to" card
+			##if r2 is zero card - we didn't find a card to place to "to" card
 			if
 				is z			#it's enough to check for zero card because if sentinel
 				halt			#was reached, we would have all cards 9-2			
@@ -99,7 +99,7 @@ getstart:
 			inc r3
 			ld r3, r2
 			and r0, r2		#r2 = 0 if open, r2 = 128 if closed
-			stays nz		#if it is closed (not 0) continue seeking
+			stays nz		##if it is closed (not 0) continue seeking
 		wend				#now r3 = first open cell
 		dec r3				#r3 = last closed cell
 		rts					
