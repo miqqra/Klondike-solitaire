@@ -295,6 +295,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(2100,1720)" to="(2110,1720)"/>
     <wire from="(980,270)" to="(1000,270)"/>
     <wire from="(270,840)" to="(290,840)"/>
+    <wire from="(1760,1700)" to="(1770,1700)"/>
     <wire from="(1180,1100)" to="(1210,1100)"/>
     <wire from="(2400,300)" to="(2400,320)"/>
     <wire from="(2020,350)" to="(2040,350)"/>
@@ -362,6 +363,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(2100,1610)" to="(2160,1610)"/>
     <wire from="(1840,1400)" to="(1850,1400)"/>
     <wire from="(1790,1670)" to="(1800,1670)"/>
+    <wire from="(1760,1640)" to="(1770,1640)"/>
     <wire from="(1570,1450)" to="(1580,1450)"/>
     <wire from="(2240,270)" to="(2240,350)"/>
     <wire from="(1760,350)" to="(1780,350)"/>
@@ -678,6 +680,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(2340,1350)" to="(2340,1420)"/>
     <wire from="(70,700)" to="(1440,700)"/>
     <wire from="(110,320)" to="(130,320)"/>
+    <wire from="(1760,1660)" to="(1770,1660)"/>
     <wire from="(1580,1480)" to="(1590,1480)"/>
     <wire from="(1530,350)" to="(1730,350)"/>
     <wire from="(230,1090)" to="(240,1090)"/>
@@ -976,6 +979,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(2350,1630)" to="(2360,1630)"/>
     <wire from="(2160,1640)" to="(2160,1650)"/>
     <wire from="(1730,1970)" to="(1740,1970)"/>
+    <wire from="(1760,1680)" to="(1770,1680)"/>
     <wire from="(2180,1420)" to="(2230,1420)"/>
     <wire from="(1230,810)" to="(1260,810)"/>
     <wire from="(230,1110)" to="(240,1110)"/>
@@ -1933,6 +1937,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="text" val="Print cards to indicators"/>
       <a name="font" val="SansSerif bolditalic 24"/>
     </comp>
+    <comp lib="0" loc="(1760,1700)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="command_clock"/>
+      <a name="labelfont" val="SansSerif plain 9"/>
+    </comp>
     <comp lib="0" loc="(2280,1350)" name="Tunnel">
       <a name="facing" val="south"/>
       <a name="label" val="sent_ld"/>
@@ -2172,6 +2181,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="1" loc="(1790,1700)" name="Buffer"/>
     <comp lib="3" loc="(1290,1470)" name="Comparator"/>
+    <comp lib="0" loc="(1760,1660)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="sent_clock"/>
+      <a name="labelfont" val="SansSerif plain 9"/>
+    </comp>
     <comp lib="0" loc="(1820,1390)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="sent_ld"/>
@@ -2472,7 +2486,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(1250,1080)" name="Constant">
       <a name="width" val="12"/>
-      <a name="value" val="0xfff"/>
+      <a name="value" val="0xff"/>
     </comp>
     <comp lib="3" loc="(1110,1530)" name="Comparator"/>
     <comp lib="0" loc="(1190,1120)" name="Tunnel">
@@ -2873,11 +2887,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="4" loc="(1150,1740)" name="Register">
       <a name="width" val="4"/>
     </comp>
-    <comp lib="0" loc="(1770,1660)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="sent_clock"/>
-      <a name="labelfont" val="SansSerif plain 9"/>
-    </comp>
     <comp lib="0" loc="(470,220)" name="Tunnel">
       <a name="facing" val="north"/>
       <a name="label" val="read/write"/>
@@ -2952,11 +2961,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="east"/>
       <a name="width" val="8"/>
       <a name="label" val="addr"/>
-      <a name="labelfont" val="SansSerif plain 9"/>
-    </comp>
-    <comp lib="0" loc="(1770,1640)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="gen_clock"/>
       <a name="labelfont" val="SansSerif plain 9"/>
     </comp>
     <comp lib="0" loc="(930,1380)" name="Tunnel">
@@ -3442,6 +3446,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(1160,1440)" name="Tunnel">
       <a name="width" val="4"/>
       <a name="label" val="ca"/>
+      <a name="labelfont" val="SansSerif plain 9"/>
+    </comp>
+    <comp lib="0" loc="(1760,1680)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="print_clock"/>
       <a name="labelfont" val="SansSerif plain 9"/>
     </comp>
     <comp lib="4" loc="(2330,2020)" name="Register"/>
@@ -4339,11 +4348,6 @@ a3 ae ba c7 d5 105*0 d
       <a name="label" val="gen_address"/>
       <a name="labelfont" val="SansSerif plain 9"/>
     </comp>
-    <comp lib="0" loc="(1770,1680)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="print_clock"/>
-      <a name="labelfont" val="SansSerif plain 9"/>
-    </comp>
     <comp lib="5" loc="(1990,420)" name="Hex Digit Display"/>
     <comp lib="4" loc="(1330,1920)" name="Register">
       <a name="width" val="4"/>
@@ -4666,11 +4670,6 @@ a3 ae ba c7 d5 105*0 d
       <a name="width" val="8"/>
       <a name="value" val="0xa4"/>
     </comp>
-    <comp lib="0" loc="(1770,1700)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="command_clock"/>
-      <a name="labelfont" val="SansSerif plain 9"/>
-    </comp>
     <comp lib="4" loc="(1720,2000)" name="Register"/>
     <comp lib="0" loc="(960,280)" name="Tunnel">
       <a name="facing" val="north"/>
@@ -4759,6 +4758,11 @@ a3 ae ba c7 d5 105*0 d
       <a name="control" val="left"/>
     </comp>
     <comp lib="5" loc="(2390,780)" name="Hex Digit Display"/>
+    <comp lib="0" loc="(1760,1640)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="gen_clock"/>
+      <a name="labelfont" val="SansSerif plain 9"/>
+    </comp>
     <comp lib="3" loc="(210,1770)" name="Comparator"/>
     <comp lib="3" loc="(570,1350)" name="Comparator"/>
     <comp lib="0" loc="(1250,1660)" name="Constant">
