@@ -8,6 +8,7 @@ irq:
 	rti
 
 main:
+	addsp -16
 	ei	
 	ldi r0, IOReg # Load the address of the keyboard and display in r0
 readkbd:
