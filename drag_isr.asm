@@ -1,4 +1,5 @@
 asect 0x00
+ei
 
 main:
 	wait
