@@ -1,4 +1,5 @@
 asect 0x00
+addsp 16
 ei
 
 main:
@@ -7,7 +8,7 @@ main:
 	
 #reset stack before leaving isr
 exit_isr:
-	ldi r0, 0xff
+	ldi r0, 16
 	stsp r0
 	rti
 	
@@ -95,25 +96,23 @@ place:
 #recieves 4-bit number in r2 (big-endian) - number of a column 
 #stores address of the first open card in the column under number r2 in r3
 getstart:
-		ldi r3, deck_offset		#r3 -> array of addresses of roots of columns	
-		dec r2					#r2 = how many columns should we skip
-		add r2, r3				#r3 -> address of root of r2 column 
-		ld r3, r3				#r3 = address of root of r2 column 		
+	ldi r3, deck_offset		#r3 -> array of addresses of roots of columns	
+	dec r2					#r2 = how many columns should we skip
+	add r2, r3				#r3 -> address of root of r2 column 
+	ld r3, r3				#r3 = address of root of r2 column 		
 	#find first open card
-		ldi r0, 0b10000000	#get opennes bit
-		while
-			inc r3
-			ld r3, r2
-			and r0, r2		#r2 = 0 if open, r2 = 128 if closed
-			stays nz		##if it is closed (not 0) continue seeking
-		wend				#now r3 = first open cell
-		rts						
+	ldi r0, 0b10000000	#get opennes bit
+	while
+		inc r3
+		ld r3, r2
+		and r0, r2		#r2 = 0 if open, r2 = 128 if closed
+		stays nz		##if it is closed (not 0) continue seeking
+	wend				#now r3 = first open cell
+	rts						
 
 asect 0xf0
-dc place	#place is interuption routine
-asect 0x80	#it can be anywhere except for intersection with deck
-deck_offset: dc deck, deck + 9, deck + 19, deck + 30, deck + 42, deck + 55, deck + 69
-asect 0x90		#deck starts at 90
-deck: ds 84 	#deck has 77 cells + 7 sentinels
+dc place
+define deck_offset, 0x80 #it can be anywhere except for intersection with deck
+define deck, 0x90 	#deck starts at 90
 define from_to, 0xf3 #IO port
 end 
