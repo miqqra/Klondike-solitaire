@@ -1,4 +1,5 @@
 asect 0x00
+addsp 16
 ei
 
 main:
