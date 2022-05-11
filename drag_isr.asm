@@ -119,8 +119,12 @@ place:
 		and r0, r2			#r2 = 0 if we must stop (empty or sentinel), 1 otherwise
 		stays nz			#while current cell is not the end
 			ldi r2, 0	
-			st r3, r2		#clears mem[r3] from card of the completed deck
+			st r3, r2		#cl			ears mem[r3] from card of the completed deck
 	wend
+	ldi r3, count_win
+	ld r3, r2
+	inc r2
+	st r3, r2
 	br exit_isr
 #---------REGISTERS-------------- 
 #r0, r2 - undefined
@@ -148,4 +152,5 @@ dc place
 define deck_offset, 0x80 #it can be anywhere except for intersection with deck
 define deck, 0x90 	#deck starts at 90
 define from_to, 0xf3 #IO port
+define count_win, 0xf4
 end 

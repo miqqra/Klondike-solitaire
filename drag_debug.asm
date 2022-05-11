@@ -108,6 +108,10 @@ place:
 			ldi r2, 0	
 			st r3, r2		#clears mem[r3] from card of the completed deck
 	wend
+	ldi r3, count_win
+	ld r3, r2
+	inc r2
+	st r3, r2
 	halt
 #---------REGISTERS-------------- 
 #r0, r2 - undefined
@@ -135,4 +139,5 @@ deck: dc 0x0A, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x48, 0x47,
 deck_offset: dc deck, deck + 9, deck + 19, deck + 30, deck + 42, deck + 55, deck + 69
 INPUT>
 from_to: dc 0x21
+define count_win, 0xf4
 end 
