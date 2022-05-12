@@ -19,12 +19,13 @@ place:
 		ldi r0, 0b00001111		#mask to get number of "to" column
 		and r0, r2				#r2 = number of "to" column
 		jsr getstart			#r3 -> first open card of "to" column			
+		push r3					#we will use this address in the end	
 	#find first empty cell: it's address - cell where we will drag cards
 	#the previous cell contains card on which we will drag
 	#later we will compare this card with "from" card
 		ldi r0, 0b01000000	#get "is end" bit
 		while
-			ld r3, r1		#load current card in r1
+					ld r3, r1		#load current card in r1
 			and r0, r1		#r1 = 0 => it's empty or sentinel, r1 = 64 => just card -> proceed	
 			stays nz
 			inc r3			#check next cell
@@ -88,6 +89,42 @@ place:
 				inc r3			#r3 -> next card
 				inc r1			#r1 = next empty cell
 		wend
+	#try to find full deck in "to" column
+	pop r3						#in the beginning we pushed start of "to" column
+	push r3						#to clear it after we are done
+	ldi r0, 0b01001001			#r0 = what card we anticipate to complete deck
+	while
+		ld r3, r2				#r2 = current card
+		cmp r2, r0				#r2 is what we anticipate to see
+		stays eq
+		inc r3					#r3 -> next card
+		dec r0					#r0 is anticipated to be r0 - 1 next time
+	wend
+	ldi r1, 0b01000001			#r1 = what we should end up with
+	if
+		cmp r1, r0
+		is ne
+		br exit_isr				#deck is not full => don't do anything
+	fi
+	pop r3					#now clear it
+	dec r3					#let's open previous card
+	ldi r0, 0b01111111		
+	ld r3, r2				#r2 = prev card
+	and r0, r2				#r2 = prev card, but open
+	st r3, r2				#mem[r3] is now openned
+	ldi r0, 0b01000000		#get "is_end" bit
+	while
+		inc r3				#r3 -> next card
+		ld r3, r2			#r2 = current card
+		and r0, r2			#r2 = 0 if we must stop (empty or sentinel), 1 otherwise
+		stays nz			#while current cell is not the end
+			ldi r2, 0	
+			st r3, r2		#cl			ears mem[r3] from card of the completed deck
+	wend
+	ldi r3, count_win
+	ld r3, r2
+	inc r2
+	st r3, r2
 	br exit_isr
 #---------REGISTERS-------------- 
 #r0, r2 - undefined
@@ -115,4 +152,5 @@ dc place
 define deck_offset, 0x80 #it can be anywhere except for intersection with deck
 define deck, 0x90 	#deck starts at 90
 define from_to, 0xf3 #IO port
+define count_win, 0xf4
 end 
